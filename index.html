@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXORA | Crafted for Modern Living - Luxury Furniture & Interior Design</title>
+  <meta name="description" content="Immerse yourself in Luxora's curated collection of ultra-premium modern furniture. Handcrafted sustainable masterpieces blending Japanese minimalism and Scandinavian warmth.">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Noise Texture Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Custom Cursor Followers -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- Loading Animation Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-brand">LUXORA</div>
+    <div class="preloader-progress-container">
+      <div class="preloader-progress-bar" id="preloader-bar"></div>
+    </div>
+    <div class="preloader-percentage" id="preloader-percent">0%</div>
+  </div>
+
+  <!-- Drawer Overlays -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <!-- Left Side Drawer: Menu Links -->
+  <div class="drawer drawer-left" id="drawer-menu">
+    <div class="drawer-header">
+      <div class="drawer-title">LUXORA</div>
+      <button class="drawer-close" id="menu-close-btn">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <ul class="menu-links">
+        <li class="menu-link-item"><a href="#hero" class="menu-link">Home</a></li>
+        <li class="menu-link-item"><a href="#collection" class="menu-link">Collection</a></li>
+        <li class="menu-link-item"><a href="#about" class="menu-link">Our Story</a></li>
+        <li class="menu-link-item"><a href="#room-experience" class="menu-link">Room Visualizer</a></li>
+        <li class="menu-link-item"><a href="#customizer" class="menu-link">Customizer</a></li>
+        <li class="menu-link-item"><a href="#gallery" class="menu-link">Portfolio</a></li>
+      </ul>
+      <div class="menu-contact-info">
+        <h4>Inquiries</h4>
+        <p>concierge@luxora.design</p>
+        <p>+1 (800) 402-9830</p>
+        <p>Mon - Sat: 9:00 AM - 6:00 PM EST</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side Drawer: Shopping Cart -->
+  <div class="drawer" id="drawer-cart">
+    <div class="drawer-header">
+      <div class="drawer-title">Your Cart</div>
+      <button class="drawer-close" id="cart-close-btn">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="drawer-body" id="cart-body">
+      <div class="cart-empty" id="cart-empty-view">
+        <i data-lucide="shopping-bag"></i>
+        <p>Your bag is currently empty.</p>
+      </div>
+      <div class="cart-items-list" id="cart-items-container" style="display: none;">
+        <!-- Dynamic Cart Items -->
+      </div>
+    </div>
+    <div class="cart-footer" id="cart-footer-view" style="display: none;">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <span id="cart-total-val">$0.00</span>
+      </div>
+      <button class="btn-primary" style="width: 100%;">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Right Side Drawer: Wishlist -->
+  <div class="drawer" id="drawer-wishlist">
+    <div class="drawer-header">
+      <div class="drawer-title">Wishlist</div>
+      <button class="drawer-close" id="wishlist-close-btn">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <div class="cart-empty" id="wishlist-empty-view">
+        <i data-lucide="heart"></i>
+        <p>No items added to your wishlist yet.</p>
+      </div>
+      <div class="cart-items-list" id="wishlist-items-container" style="display: none;">
+        <!-- Wishlist Items -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side Drawer: Search -->
+  <div class="drawer" id="drawer-search">
+    <div class="drawer-header">
+      <div class="drawer-title">Search</div>
+      <button class="drawer-close" id="search-close-btn">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <div class="newsletter-form" style="margin-bottom: 30px;">
+        <input type="text" class="newsletter-input" id="search-input-field" placeholder="Search collection...">
+        <button class="btn-primary" style="padding: 10px 20px;"><i data-lucide="search" style="width: 16px; height: 16px;"></i></button>
+      </div>
+      <div id="search-results-container">
+        <p style="text-align: center; color: var(--color-text-secondary); font-size: 0.85rem;">Type above to discover our catalog.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="nav-container" id="nav-header">
+    <button class="nav-menu-btn" id="menu-open-btn">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span>Menu</span>
+    </button>
+    
+    <a href="#" class="logo">LUXORA</a>
+
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="search-open-btn" aria-label="Search">
+        <i data-lucide="search"></i>
+      </button>
+      <button class="nav-icon-btn" id="wishlist-open-btn" aria-label="Wishlist">
+        <i data-lucide="heart"></i>
+      </button>
+      <button class="nav-icon-btn" id="cart-open-btn" aria-label="Shopping Cart">
+        <i data-lucide="shopping-bag"></i>
+        <span class="cart-count" id="cart-indicator" style="display: none;">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-container">
+      <img src="assets/hero_lounge.png" alt="Luxury Scandinavian Lounge Interior" class="hero-bg-img" id="hero-img">
+      <div class="hero-overlay"></div>
+      <div class="hero-spotlight" id="hero-spotlight"></div>
+    </div>
+    <div class="hero-content">
+      <span class="hero-tag">Japandi Elegance</span>
+      <h1 class="hero-title" id="hero-title">Furniture That Defines <br><span class="serif-italic text-accent">Timeless Living.</span></h1>
+      <p class="hero-desc">Discover organic materials, masterly joinery, and museum-inspired aesthetics. Created for those who perceive home as an art form.</p>
+      <div class="hero-btns">
+        <a href="#collection" class="btn-primary">Explore Collection</a>
+        <a href="#footer" class="btn-secondary">Book Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Collection -->
+  <section class="section" id="collection">
+    <span class="section-tag">Curated Collections</span>
+    <div class="section-header">
+      <h2 class="section-title">The Masterworks</h2>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="chairs">Chairs</button>
+        <button class="filter-tab" data-filter="sofas">Sofas</button>
+        <button class="filter-tab" data-filter="tables">Tables</button>
+        <button class="filter-tab" data-filter="lighting">Lighting</button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="products-grid" id="products-grid">
+      <!-- Sora Lounge Chair -->
+      <div class="product-card" data-category="chairs">
+        <div class="product-img-wrapper">
+          <span class="product-badge">New</span>
+          <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=800&q=80" alt="Sora Lounge Chair" class="product-img">
+          <button class="product-quick-view" onclick="openQuickPreview('Sora Lounge Chair', '$1,250', 'Chairs', 'A gorgeous curved lounge chair upholstered in premium cream bouclé fabric, showcasing Scandinavian wood frame details.', 'https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=800&q=80')">Quick View</button>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Chairs</span>
+          <h3 class="product-title">Sora Lounge Chair</h3>
+          <span class="product-price">$1,250</span>
+        </div>
+      </div>
+
+      <!-- Kyoto Dining Table -->
+      <div class="product-card" data-category="tables">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=800&q=80" alt="Nordic Oak Dining Table" class="product-img">
+          <button class="product-quick-view" onclick="openQuickPreview('Kyoto Dining Table', '$2,900', 'Tables', 'Solid white oak dining table displaying Japanese clean lines and beautiful mortise-and-tenon joints.', 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=800&q=80')">Quick View</button>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Tables</span>
+          <h3 class="product-title">Kyoto Dining Table</h3>
+          <span class="product-price">$2,900</span>
+        </div>
+      </div>
+
+      <!-- Marenco Bouclé Sofa -->
+      <div class="product-card" data-category="sofas">
+        <div class="product-img-wrapper">
+          <span class="product-badge">Exclusive</span>
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" alt="Marenco Sofa" class="product-img">
+          <button class="product-quick-view" onclick="openQuickPreview('Marenco Bouclé Sofa', '$5,400', 'Sofas', 'A low-profile modular sofa upholstered in a organic textured cream weave. The ultimate statement of luxurious lounge comfort.', 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80')">Quick View</button>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Sofas</span>
+          <h3 class="product-title">Marenco Sofa</h3>
+          <span class="product-price">$5,400</span>
+        </div>
+      </div>
+
+      <!-- Washi Pendant Light -->
+      <div class="product-card" data-category="lighting">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80" alt="Washi Pendant Lamp" class="product-img">
+          <button class="product-quick-view" onclick="openQuickPreview('Washi Pendant Light', '$620', 'Lighting', 'Rice paper and bamboo ribbing float effortlessly, filtering a soft, atmospheric warm glow.', 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80')">Quick View</button>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Lighting</span>
+          <h3 class="product-title">Washi Pendant Light</h3>
+          <span class="product-price">$620</span>
+        </div>
+      </div>
+
+      <!-- Kensho Armchair -->
+      <div class="product-card" data-category="chairs">
+        <div class="product-img-wrapper">
+          <img src="assets/chair_olive.png" alt="Kensho Armchair" class="product-img">
+          <button class="product-quick-view" onclick="openQuickPreview('Kensho Armchair', '$1,100', 'Chairs', 'Matte black ash wood frame with organic olive linen cushions. An elegant fusion of Japanese shape and Nordic design.', 'assets/chair_olive.png')">Quick View</button>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Chairs</span>
+          <h3 class="product-title">Kensho Armchair</h3>
+          <span class="product-price">$1,100</span>
+        </div>
+      </div>
+
+      <!-- Travertine Floor Lamp -->
+      <div class="product-card" data-category="lighting">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1601084881623-cef5a7de343a?auto=format&fit=crop&w=800&q=80" alt="Travertine Lamp" class="product-img">
+          <button class="product-quick-view" onclick="openQuickPreview('Travertine Floor Lamp', '$850', 'Lighting', 'Italian travertine block base supporting an elegant brushed brass stem and glass orb.', 'https://images.unsplash.com/photo-1601084881623-cef5a7de343a?auto=format&fit=crop&w=800&q=80')">Quick View</button>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Lighting</span>
+          <h3 class="product-title">Travertine Floor Lamp</h3>
+          <span class="product-price">$850</span>
+        </div>
+      </div>
+
+      <!-- Minimal Credenza -->
+      <div class="product-card" data-category="tables">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80" alt="Nordic Storage Credenza" class="product-img">
+          <button class="product-quick-view" onclick="openQuickPreview('Nordic Oak Credenza', '$1,800', 'Tables', 'Clean storage unit crafted from walnut wood veneer, with thin copper accents and soft-closing doors.', 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80')">Quick View</button>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Tables</span>
+          <h3 class="product-title">Nordic Oak Credenza</h3>
+          <span class="product-price">$1,800</span>
+        </div>
+      </div>
+
+      <!-- Atelier Lounge Chair -->
+      <div class="product-card" data-category="chairs">
+        <div class="product-img-wrapper">
+          <img src="assets/chair_cream.png" alt="Atelier Lounge Chair" class="product-img">
+          <button class="product-quick-view" onclick="openQuickPreview('Atelier Lounge Chair', '$1,400', 'Chairs', 'A masterpiece armchair crafted from white oak frame and rich textured cream upholstery.', 'assets/chair_cream.png')">Quick View</button>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Chairs</span>
+          <h3 class="product-title">Atelier Lounge Chair</h3>
+          <span class="product-price">$1,400</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Philosophy Section -->
+  <section class="section section-dark" id="about">
+    <div class="about-split">
+      <div class="about-img-col">
+        <div class="about-img-wrapper">
+          <img src="assets/about_crafts.png" alt="Master Craftsman handworking wood" class="about-img" id="about-main-img">
+        </div>
+        <div class="about-img-floating">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Minimalist Oak Joinery Details" id="about-float-img">
+        </div>
+      </div>
+      <div class="about-text-col">
+        <span class="section-tag">Our Philosophy</span>
+        <h2 class="about-title">Built Upon Wood, Clay, <span class="serif-italic">& Devotion.</span></h2>
+        <p class="about-paragraph">At Luxora, we believe furniture shouldn't just fill space; it should sculpt it. Every curve, peg, and joint is calculated to deliver timeless poise to modern environments.</p>
+        <p class="about-highlight">"Simplicity is not the lack of clutter, but the presence of clarity."</p>
+        <p class="about-paragraph">Our wood is sourced from FSC-certified Scandinavian forests. Handcrafted in our studio, each object requires weeks of attention by master carpenters trained in traditional Japanese joinery techniques.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Showcase Alternating Layout -->
+  <section class="section" id="showcase">
+    <span class="section-tag">Featured Pieces</span>
+    <h2 class="section-title" style="margin-bottom: 80px;">Design Showcases</h2>
+    
+    <!-- Item 1 -->
+    <div class="showcase-item">
+      <div class="showcase-img-col">
+        <div class="showcase-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=1200&q=80" alt="Sora Lounge Chair Interior scene">
+        </div>
+      </div>
+      <div class="showcase-text-col">
+        <span class="showcase-num">01 / Curated Lounge</span>
+        <h3 class="showcase-title">Sora Lounge Chair</h3>
+        <p class="showcase-desc">Designed with organic curves that cradle the body. The Soren's custom-woven bouclé upholstery features linen threads that add warmth, while the low-slung oak frame ensures stability and elegance.</p>
+        <ul class="showcase-specs">
+          <li class="showcase-spec-item">
+            <h5>Wood Finish</h5>
+            <p>Bleached Oak</p>
+          </li>
+          <li class="showcase-spec-item">
+            <h5>Upholstery</h5>
+            <p>Cream Bouclé</p>
+          </li>
+          <li class="showcase-spec-item">
+            <h5>Warranty</h5>
+            <p>Lifetime</p>
+          </li>
+          <li class="showcase-spec-item">
+            <h5>Price</h5>
+            <p>$1,250</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="showcase-item reverse">
+      <div class="showcase-img-col">
+        <div class="showcase-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=1200&q=80" alt="Kyoto Oak Dining Table scene">
+        </div>
+      </div>
+      <div class="showcase-text-col">
+        <span class="showcase-num">02 / Dining Space</span>
+        <h3 class="showcase-title">Kyoto Dining Table</h3>
+        <p class="showcase-desc">A celebration of absolute structural simplicity. A wide, substantial solid oak table top rests on four stout structural column legs, joined together using zero metal screws for structural purity.</p>
+        <ul class="showcase-specs">
+          <li class="showcase-spec-item">
+            <h5>Material</h5>
+            <p>Solid White Oak</p>
+          </li>
+          <li class="showcase-spec-item">
+            <h5>Joinery</h5>
+            <p>Mortise & Tenon</p>
+          </li>
+          <li class="showcase-spec-item">
+            <h5>Dimensions</h5>
+            <p>240 x 100 cm</p>
+          </li>
+          <li class="showcase-spec-item">
+            <h5>Price</h5>
+            <p>$2,900</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Room Visualization Experience -->
+  <section class="section section-dark" id="room-experience">
+    <span class="section-tag">Interactive Environment</span>
+    <h2 class="section-title" style="margin-bottom: 20px;">The Open Living Gallery</h2>
+    <p style="color: rgba(255, 255, 255, 0.6); max-width: 500px; margin-bottom: 50px;">Hover over the pulsing hotspots to reveal detailed specifications and pricing for each handcrafted piece in the gallery.</p>
+
+    <div class="room-viz-container">
+      <img src="assets/room_living.png" alt="Open Plan Luxury Living Room Visualizer" class="room-viz-bg">
+      
+      <!-- Hotspot 1: Light -->
+      <div class="hotspot" id="hotspot-light">
+        <button class="hotspot-trigger" aria-label="Washi Pendant Light Info">+</button>
+        <div class="hotspot-card">
+          <div class="hotspot-card-header">
+            <h4 class="hotspot-card-title">Washi Pendant</h4>
+            <span class="hotspot-card-price">$620</span>
+          </div>
+          <p class="hotspot-card-desc">Rice paper pendant light providing a soft ambient glow.</p>
+          <button class="hotspot-card-btn" onclick="quickAddToCart('Washi Pendant Light', 620, 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=200&q=80')">Add to Cart <i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Hotspot 2: Dining Table -->
+      <div class="hotspot" id="hotspot-table">
+        <button class="hotspot-trigger" aria-label="Kyoto Table Info">+</button>
+        <div class="hotspot-card">
+          <div class="hotspot-card-header">
+            <h4 class="hotspot-card-title">Kyoto Dining Table</h4>
+            <span class="hotspot-card-price">$2,900</span>
+          </div>
+          <p class="hotspot-card-desc">Solid white oak wood dining table displaying premium craft joinery.</p>
+          <button class="hotspot-card-btn" onclick="quickAddToCart('Kyoto Dining Table', 2900, 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=200&q=80')">Add to Cart <i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Hotspot 3: Lounge Chair -->
+      <div class="hotspot" id="hotspot-chair">
+        <button class="hotspot-trigger" aria-label="Atelier Lounge Chair Info">+</button>
+        <div class="hotspot-card">
+          <div class="hotspot-card-header">
+            <h4 class="hotspot-card-title">Atelier Armchair</h4>
+            <span class="hotspot-card-price">$1,400</span>
+          </div>
+          <p class="hotspot-card-desc">Sculptural solid oak frame armchair upholstered in cream bouclé fabric.</p>
+          <button class="hotspot-card-btn" onclick="quickAddToCart('Atelier Lounge Chair', 1400, 'assets/chair_cream.png')">Add to Cart <i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Hotspot 4: Oak Credenza -->
+      <div class="hotspot" id="hotspot-credenza">
+        <button class="hotspot-trigger" aria-label="Nordic Oak Credenza Info">+</button>
+        <div class="hotspot-card">
+          <div class="hotspot-card-header">
+            <h4 class="hotspot-card-title">Nordic Credenza</h4>
+            <span class="hotspot-card-price">$1,800</span>
+          </div>
+          <p class="hotspot-card-desc">Low sideboard crafted from premium white oak wood panels.</p>
+          <button class="hotspot-card-btn" onclick="quickAddToCart('Nordic Oak Credenza', 1800, 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=200&q=80')">Add to Cart <i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Customization selector -->
+  <section class="section" id="customizer">
+    <div class="customizer-container">
+      <div class="customizer-preview-col">
+        <img src="assets/chair_cream.png" alt="Customizable Atelier Armchair" class="customizer-preview-img" id="customizer-img">
+      </div>
+      <div class="customizer-options-col">
+        <span class="section-tag">Custom Tailoring</span>
+        <div class="customizer-header">
+          <h2 class="customizer-title" id="customizer-product-title">Atelier Armchair</h2>
+          <div class="customizer-price-row">
+            <span class="customizer-price" id="customizer-product-price">$1,400</span>
+            <span class="customizer-status">Handcrafted to Order</span>
+          </div>
+          <p>Configure the ideal wood frame finish and premium textile combination to match your interior vision.</p>
+        </div>
+
+        <!-- Group 1: Wood Frame -->
+        <div class="customizer-control-group">
+          <div class="customizer-control-title">
+            <span>Wood Finish</span>
+            <span class="customizer-val-label" id="label-wood">Light White Oak</span>
+          </div>
+          <div class="swatch-list">
+            <button class="swatch-item active" data-wood="oak" data-wood-label="Light White Oak" aria-label="Light White Oak Finish">
+              <span class="swatch-color finish-oak"></span>
+            </button>
+            <button class="swatch-item" data-wood="walnut" data-wood-label="Natural Walnut" aria-label="Natural Walnut Finish">
+              <span class="swatch-color finish-walnut"></span>
+            </button>
+            <button class="swatch-item" data-wood="ash" data-wood-label="Ebonized Black Ash" aria-label="Ebonized Black Ash Finish">
+              <span class="swatch-color finish-ash"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Group 2: Fabric -->
+        <div class="customizer-control-group">
+          <div class="customizer-control-title">
+            <span>Upholstery Fabric</span>
+            <span class="customizer-val-label" id="label-fabric">Cream Bouclé</span>
+          </div>
+          <div class="swatch-list">
+            <button class="swatch-item active" data-fabric="cream" data-fabric-label="Cream Bouclé" data-price-offset="0" aria-label="Cream Bouclé Fabric">
+              <span class="swatch-color fabric-cream"></span>
+            </button>
+            <button class="swatch-item" data-fabric="olive" data-fabric-label="Soft Olive Linen" data-price-offset="-300" aria-label="Soft Olive Linen Fabric">
+              <span class="swatch-color fabric-olive"></span>
+            </button>
+            <button class="swatch-item" data-fabric="charcoal" data-fabric-label="Charcoal Canvas" data-price-offset="0" aria-label="Charcoal Canvas Fabric">
+              <span class="swatch-color fabric-charcoal"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Add to cart -->
+        <button class="btn-primary customizer-action" id="customizer-add-btn">Add Customized Piece</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section section-dark" id="benefits">
+    <span class="section-tag">The Luxora Standard</span>
+    <h2 class="section-title" style="margin-bottom: 60px;">Committed to Excellence</h2>
+    <div class="benefits-grid">
+      <!-- 1 -->
+      <div class="benefit-card">
+        <span class="benefit-icon"><i data-lucide="leaf"></i></span>
+        <h3 class="benefit-title">Sustainable Forestry</h3>
+        <p class="benefit-desc">We use only FSC-certified oak and walnut wood, harvested from forests where growth exceeds timber extraction rates.</p>
+      </div>
+      <!-- 2 -->
+      <div class="benefit-card">
+        <span class="benefit-icon"><i data-lucide="award"></i></span>
+        <h3 class="benefit-title">Lifetime Warranty</h3>
+        <p class="benefit-desc">We stand behind our woodworking. Each piece features a lifetime structural warranty covering all timber joinery joints.</p>
+      </div>
+      <!-- 3 -->
+      <div class="benefit-card">
+        <span class="benefit-icon"><i data-lucide="sparkles"></i></span>
+        <h3 class="benefit-title">Handcrafted Processes</h3>
+        <p class="benefit-desc">No industrial automated assembly lines. Every chair is individual, built from start to end by a single master joiner.</p>
+      </div>
+      <!-- 4 -->
+      <div class="benefit-card">
+        <span class="benefit-icon"><i data-lucide="globe"></i></span>
+        <h3 class="benefit-title">Worldwide Delivery</h3>
+        <p class="benefit-desc">We deliver to over 35 countries with bespoke shockproof packaging, and optional white-glove installation services.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Portfolio Gallery (Masonry Style) -->
+  <section class="section" id="gallery">
+    <span class="section-tag">Portfolio & Interiors</span>
+    <div class="section-header">
+      <h2 class="section-title">The Luxora Spaces</h2>
+      <!-- Simple Category Filter -->
+      <div class="filter-tabs" id="gallery-filters">
+        <button class="filter-tab active" data-gfilter="all">All Interiors</button>
+        <button class="filter-tab" data-gfilter="residential">Residential</button>
+        <button class="filter-tab" data-gfilter="commercial">Commercial</button>
+      </div>
+    </div>
+
+    <!-- Masonry Grid -->
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- Item 1 -->
+      <div class="gallery-item" data-gcat="residential" onclick="openLightbox('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80', 'The Copenhagen Loft')">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Loft Interior" class="gallery-item-img">
+        <div class="gallery-item-overlay">
+          <h3 class="gallery-item-title">The Copenhagen Loft</h3>
+          <span class="gallery-item-category">Residential</span>
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="gallery-item" data-gcat="commercial" onclick="openLightbox('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80', 'Kyoto Zen Tea House')">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Teahouse Interior" class="gallery-item-img">
+        <div class="gallery-item-overlay">
+          <h3 class="gallery-item-title">Kyoto Zen Tea House</h3>
+          <span class="gallery-item-category">Commercial</span>
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="gallery-item" data-gcat="residential" onclick="openLightbox('https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80', 'The Stockholm Villa')">
+        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=600&q=80" alt="Villa Bedroom" class="gallery-item-img">
+        <div class="gallery-item-overlay">
+          <h3 class="gallery-item-title">The Stockholm Villa</h3>
+          <span class="gallery-item-category">Residential</span>
+        </div>
+      </div>
+      <!-- Item 4 -->
+      <div class="gallery-item" data-gcat="residential" onclick="openLightbox('https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1200&q=80', 'The Milan Apartment')">
+        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=600&q=80" alt="Apartment Living Room" class="gallery-item-img">
+        <div class="gallery-item-overlay">
+          <h3 class="gallery-item-title">The Milan Apartment</h3>
+          <span class="gallery-item-category">Residential</span>
+        </div>
+      </div>
+      <!-- Item 5 -->
+      <div class="gallery-item" data-gcat="commercial" onclick="openLightbox('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80', 'Nouveau Design Office')">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80" alt="Design Office Interior" class="gallery-item-img">
+        <div class="gallery-item-overlay">
+          <h3 class="gallery-item-title">Nouveau Design Office</h3>
+          <span class="gallery-item-category">Commercial</span>
+        </div>
+      </div>
+      <!-- Item 6 -->
+      <div class="gallery-item" data-gcat="residential" onclick="openLightbox('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80', 'Warm Modern Dining Room')">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80" alt="Minimalist Kitchen Space" class="gallery-item-img">
+        <div class="gallery-item-overlay">
+          <h3 class="gallery-item-title">Warm Modern Dining Room</h3>
+          <span class="gallery-item-category">Residential</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fullscreen Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <button class="lightbox-close" id="lightbox-close-btn">
+      <i data-lucide="x"></i>
+    </button>
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightbox-img">
+      <div class="lightbox-caption" id="lightbox-caption">Caption text</div>
+    </div>
+  </div>
+
+  <!-- Crafting Process Timeline -->
+  <section class="section section-dark" id="process">
+    <span class="section-tag">How We Work</span>
+    <h2 class="section-title" style="margin-bottom: 80px;">The Journey of Creation</h2>
+    
+    <div class="process-timeline-container">
+      <div class="process-timeline-line"></div>
+      <div class="process-timeline-progress" id="timeline-progress"></div>
+
+      <!-- Step 1 -->
+      <div class="process-step">
+        <div class="process-step-num">
+          <div class="process-marker"></div>
+        </div>
+        <div class="process-step-content">
+          <div class="process-step-content-num">01 / consultation</div>
+          <h3 class="process-step-title">Personal Aesthetics Study</h3>
+          <p>We align on spatial floor plans, lighting patterns, custom dimensions, and wood preferences to craft a personalized digital mood board.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="process-step">
+        <div class="process-step-num">
+          <div class="process-marker"></div>
+        </div>
+        <div class="process-step-content">
+          <div class="process-step-content-num">02 / design</div>
+          <h3 class="process-step-title">Scale Visualization</h3>
+          <p>Our architecture team generates precise detailed drafts and material renders, ensuring every custom joint integrates into your floor layout.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="process-step">
+        <div class="process-step-num">
+          <div class="process-marker"></div>
+        </div>
+        <div class="process-step-content">
+          <div class="process-step-content-num">03 / crafting</div>
+          <h3 class="process-step-title">Millimeter Precision Crafting</h3>
+          <p>Using centuries-old mortise-and-tenon joints, a dedicated master craftsman shapes FSC-certified lumber, finishing with organic organic oils.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="process-step">
+        <div class="process-step-num">
+          <div class="process-marker"></div>
+        </div>
+        <div class="process-step-content">
+          <div class="process-step-content-num">04 / delivery</div>
+          <h3 class="process-step-title">White Glove Setup</h3>
+          <p>Our logistical team delivers and mounts your items inside shockproof wooden packaging crates, including on-site leveling checkup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Counters -->
+  <section class="section" id="statistics">
+    <div class="stats-grid">
+      <!-- Stat 1 -->
+      <div class="stat-item">
+        <span class="stat-num" data-target="25">0</span>
+        <span class="stat-title">Years Experience</span>
+      </div>
+      <!-- Stat 2 -->
+      <div class="stat-item">
+        <span class="stat-num" data-target="5000">0</span>
+        <span class="stat-title">Masterpieces Built</span>
+      </div>
+      <!-- Stat 3 -->
+      <div class="stat-item">
+        <span class="stat-num" data-target="120">0</span>
+        <span class="stat-title">Master Craftsmen</span>
+      </div>
+      <!-- Stat 4 -->
+      <div class="stat-item">
+        <span class="stat-num" data-target="35">0</span>
+        <span class="stat-title">Countries Reached</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Carousel -->
+  <section class="section section-dark" id="testimonials">
+    <span class="section-tag">Client Reviews</span>
+    <h2 class="section-title" style="text-align: center; margin-bottom: 60px;">Living with Luxora</h2>
+
+    <div class="testimonials-slider-container">
+      <div class="testimonials-track" id="testimonials-track">
+        <!-- Slide 1 -->
+        <div class="testimonial-slide">
+          <blockquote class="testimonial-quote">"The Sora Lounge Chair is a functional sculpture. The natural wood grains are outstanding, and the bouclé fabric feels incredibly high-end. It forms the center of our living space."</blockquote>
+          <div class="testimonial-author-info">
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Sophia Loren">
+            </div>
+            <span class="testimonial-name">Sophia Loren</span>
+            <span class="testimonial-role">Architect, Copenhagen</span>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="testimonial-slide">
+          <blockquote class="testimonial-quote">"Luxora represents the pinnacle of modern luxury design. Their commitment to zero metal screws and mortise joints is beautiful. The Kyoto Table is a masterpiece."</blockquote>
+          <div class="testimonial-author-info">
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Marcus Aurelius">
+            </div>
+            <span class="testimonial-name">Marcus Aurelius</span>
+            <span class="testimonial-role">Interior Designer, Milan</span>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="testimonial-slide">
+          <blockquote class="testimonial-quote">"The consulting process was completely immersive. Seeing details mapped to our scale blueprint was a joy. Our custom office setup has completely redefined how we work."</blockquote>
+          <div class="testimonial-author-info">
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80" alt="Kenji Sato">
+            </div>
+            <span class="testimonial-name">Kenji Sato</span>
+            <span class="testimonial-role">Brand Architect, Tokyo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="carousel-nav">
+        <button class="carousel-nav-btn" id="carousel-prev" aria-label="Previous Slide">
+          <i data-lucide="chevron-left"></i>
+        </button>
+        <div class="carousel-dots" id="carousel-dots">
+          <!-- Dots dynamically generated -->
+        </div>
+        <button class="carousel-nav-btn" id="carousel-next" aria-label="Next Slide">
+          <i data-lucide="chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section class="section" id="awards">
+    <span class="section-tag">Global Recognition</span>
+    <h2 class="section-title" style="margin-bottom: 60px;">Accolades & Accreditations</h2>
+    <div class="awards-grid">
+      <!-- Badge 1 -->
+      <div class="award-card">
+        <div class="award-badge-icon"><i data-lucide="award"></i></div>
+        <span class="award-year">2025</span>
+        <h3 class="award-title">Awwwards</h3>
+        <span class="award-org">Best Visual Design Agency</span>
+      </div>
+      <!-- Badge 2 -->
+      <div class="award-card">
+        <div class="award-badge-icon"><i data-lucide="leaf"></i></div>
+        <span class="award-year">2025</span>
+        <h3 class="award-title">Green Product Award</h3>
+        <span class="award-org">Sustainable Timber Assembly</span>
+      </div>
+      <!-- Badge 3 -->
+      <div class="award-card">
+        <div class="award-badge-icon"><i data-lucide="compass"></i></div>
+        <span class="award-year">2024</span>
+        <h3 class="award-title">Scandinavian Design Award</h3>
+        <span class="award-org">Warm Minimalist Category</span>
+      </div>
+      <!-- Badge 4 -->
+      <div class="award-card">
+        <div class="award-badge-icon"><i data-lucide="shield-check"></i></div>
+        <span class="award-year">2024</span>
+        <h3 class="award-title">FSC® C120409</h3>
+        <span class="award-org">Certified Sustainable Sourcing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section" style="background-color: var(--color-bg-secondary);">
+    <div class="newsletter-wrapper">
+      <span class="section-tag">Join The Inner Circle</span>
+      <h2 class="newsletter-title">Subscribe to Luxora Letters</h2>
+      <p class="newsletter-desc">Receive exclusive previews of seasonal capsules, design interviews, and woodcraft journal articles.</p>
+      
+      <form class="newsletter-form" id="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <input type="email" class="newsletter-input" id="newsletter-email" placeholder="Enter your email address" required>
+        <button class="btn-primary" type="submit">Join</button>
+      </form>
+      <div class="newsletter-msg" id="newsletter-msg">You have successfully subscribed to Luxora Letters.</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <h3 class="footer-logo">LUXORA</h3>
+        <p class="footer-tagline">Crafted for Modern Living.</p>
+        <p class="footer-desc">Timeless Scandinavian simplicity and Japanese precision blended into premium architectural furniture for fine spaces.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-btn" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" class="footer-social-btn" aria-label="Pinterest"><i data-lucide="pinterest"></i></a>
+          <a href="#" class="footer-social-btn" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" class="footer-social-btn" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Collections</h4>
+        <ul class="footer-links">
+          <li class="footer-link"><a href="#collection">Chairs Collection</a></li>
+          <li class="footer-link"><a href="#collection">Modular Sofas</a></li>
+          <li class="footer-link"><a href="#collection">Dining Tables</a></li>
+          <li class="footer-link"><a href="#collection">Pendant Lighting</a></li>
+          <li class="footer-link"><a href="#collection">Sideboards & Credenzas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>About</h4>
+        <ul class="footer-links">
+          <li class="footer-link"><a href="#about">Our Story</a></li>
+          <li class="footer-link"><a href="#about">Craftsmanship</a></li>
+          <li class="footer-link"><a href="#benefits">Sustainability</a></li>
+          <li class="footer-link"><a href="#process">The Process</a></li>
+          <li class="footer-link"><a href="#awards">Design Badges</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Concierge</h4>
+        <ul class="footer-links">
+          <li class="footer-link"><a href="#footer">Book Consultation</a></li>
+          <li class="footer-link"><a href="#footer">Custom Configurations</a></li>
+          <li class="footer-link"><a href="#benefits">Warranty & Returns</a></li>
+          <li class="footer-link"><a href="#footer">Direct Inquiries</a></li>
+          <li class="footer-link"><a href="#footer">Showroom Locations</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Luxora Design International Inc. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quick Preview Modal -->
+  <div class="lightbox-modal" id="quick-preview-modal">
+    <button class="lightbox-close" id="qp-close-btn">
+      <i data-lucide="x"></i>
+    </button>
+    <div class="lightbox-content" style="max-width: 900px; display: flex; gap: 40px; background-color: var(--color-bg); padding: 40px; border-radius: 8px; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);">
+      <div style="width: 50%; aspect-ratio: 4/5; border-radius: 6px; overflow: hidden; background-color: var(--color-bg-secondary);">
+        <img src="" alt="" id="qp-img" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div style="width: 50%; display: flex; flex-direction: column; justify-content: space-between; text-align: left; color: var(--color-text-primary);">
+        <div>
+          <span id="qp-category" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-secondary); display: block; margin-bottom: 10px;">Category</span>
+          <h2 id="qp-title" style="font-family: var(--font-serif); font-size: 2.2rem; margin-bottom: 15px;">Product Title</h2>
+          <span id="qp-price" style="font-family: var(--font-sans); font-size: 1.4rem; font-weight: 600; color: var(--color-accent); display: block; margin-bottom: 20px;">$0.00</span>
+          <p id="qp-desc" style="font-size: 0.9rem; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 30px;">Product description goes here.</p>
+        </div>
+        <div style="display: flex; gap: 15px;">
+          <button class="btn-primary" id="qp-add-cart-btn" style="flex-grow: 1;">Add to Bag</button>
+          <button class="btn-secondary" id="qp-add-wish-btn" style="padding: 15px;"><i data-lucide="heart"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- GSAP Animation Framework -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- GSAP ScrollTrigger plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Main Script -->
+  <script src="app.js"></script>
+</body>
+</html>
